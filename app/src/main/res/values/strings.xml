@@ -1,0 +1,15 @@
+<resources>
+
+    <string name="app_name">AgroConecta</string>
+
+    <string name="bienvenido">Bienvenido de vuelta</string>
+
+    <string name="correo">Correo electrónico</string>
+
+    <string name="password">Contraseña</string>
+
+    <string name="login">Iniciar sesión</string>
+
+    <string name="register">Crear una cuenta</string>
+
+</resources>
