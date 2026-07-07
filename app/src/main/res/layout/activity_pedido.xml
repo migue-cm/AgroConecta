@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp"
+            android:background="@color/background">
+
+            <ImageButton
+                android:id="@+id/btnBackPedido"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_arrow_back"
+                app:tint="@color/text_primary" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Crear pedido"
+                    android:textColor="@color/text_primary"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Revisa y confirma tu pedido"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="18dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="3dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imgPedido"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_launcher_background" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtProductoPedido"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Producto"
+                        android:textColor="@color/text_primary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtPrecioPedido"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="S/ 0.00"
+                        android:textColor="@color/primary_green"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="18dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/background">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DETALLES DEL PEDIDO"
+                    android:textColor="@color/primary_green"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Cantidad"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnMenos"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:text="-"
+                        android:textSize="22sp"
+                        android:textColor="@color/primary_green"
+                        android:backgroundTint="@color/background_light"
+                        app:cornerRadius="18dp" />
+
+                    <TextView
+                        android:id="@+id/txtCantidadPedido"
+                        android:layout_width="0dp"
+                        android:layout_height="56dp"
+                        android:layout_marginHorizontal="14dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@color/background_light"
+                        android:text="1"
+                        android:textColor="@color/text_primary"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnMas"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:text="+"
+                        android:textSize="22sp"
+                        android:textColor="@color/primary_green"
+                        android:backgroundTint="@color/background_light"
+                        app:cornerRadius="18dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="22dp"
+                    android:background="@color/border" />
+
+                <TextView
+                    android:id="@+id/txtResumenPedido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Precio unitario: S/ 0.00\nCantidad: 1\nTotal: S/ 0.00"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="18dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/card_success">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="18dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_local_shipping"
+                    app:tint="@color/primary_green"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="14dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Coordinación de entrega"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="@color/text_primary"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="El agricultor se pondrá en contacto contigo para coordinar la entrega tras aceptar el pedido."
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirmarPedido"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_margin="18dp"
+            android:text="Confirmar pedido"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/primary_green"
+            app:cornerRadius="18dp" />
+
+        <ProgressBar
+            android:id="@+id/progressPedido"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+</ScrollView>

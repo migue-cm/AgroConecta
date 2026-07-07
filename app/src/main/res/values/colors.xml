@@ -25,5 +25,6 @@
     <color name="success">#43A047</color>
     <color name="warning">#FB8C00</color>
     <color name="error">#E53935</color>
+    <color name="card_success">#E8F5E9</color>
 
 </resources>

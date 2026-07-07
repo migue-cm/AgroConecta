@@ -1,8 +1,9 @@
 package com.example.agroconecta.model;
 
 import com.google.gson.annotations.SerializedName;
+import java.io.Serializable;
 
-public class Publicacion {
+public class Publicacion implements Serializable {
 
     @SerializedName("id_publicacion")
     private int idPublicacion;
@@ -49,63 +50,19 @@ public class Publicacion {
     @SerializedName("distrito")
     private String distrito;
 
-    public int getIdPublicacion() {
-        return idPublicacion;
-    }
-
-    public String getProducto() {
-        return producto;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public String getCantidadDisponible() {
-        return cantidadDisponible;
-    }
-
-    public String getUnidadMedida() {
-        return unidadMedida;
-    }
-
-    public String getPrecioUnitario() {
-        return precioUnitario;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public String getRutaImagen() {
-        return rutaImagen;
-    }
-
-    public String getFechaCosecha() {
-        return fechaCosecha;
-    }
-
-    public String getFechaPublicacion() {
-        return fechaPublicacion;
-    }
-
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public String getAgricultor() {
-        return agricultor;
-    }
-
-    public String getDepartamento() {
-        return departamento;
-    }
-
-    public String getProvincia() {
-        return provincia;
-    }
-
-    public String getDistrito() {
-        return distrito;
-    }
+    public int getIdPublicacion() { return idPublicacion; }
+    public String getProducto() { return producto; }
+    public String getCategoria() { return categoria; }
+    public String getCantidadDisponible() { return cantidadDisponible; }
+    public String getUnidadMedida() { return unidadMedida; }
+    public String getPrecioUnitario() { return precioUnitario; }
+    public String getDescripcion() { return descripcion; }
+    public String getRutaImagen() { return rutaImagen; }
+    public String getFechaCosecha() { return fechaCosecha; }
+    public String getFechaPublicacion() { return fechaPublicacion; }
+    public int getIdUsuario() { return idUsuario; }
+    public String getAgricultor() { return agricultor; }
+    public String getDepartamento() { return departamento; }
+    public String getProvincia() { return provincia; }
+    public String getDistrito() { return distrito; }
 }

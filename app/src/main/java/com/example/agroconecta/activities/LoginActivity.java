@@ -14,6 +14,7 @@ import com.example.agroconecta.api.ApiService;
 import com.example.agroconecta.model.LoginRequest;
 import com.example.agroconecta.model.Usuario;
 import com.example.agroconecta.response.ApiResponse;
+import com.example.agroconecta.utils.SessionManager;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -41,7 +42,8 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(v -> iniciarSesion());
 
         btnRegister.setOnClickListener(v -> {
-            Toast.makeText(this, "Registro pendiente", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(LoginActivity.this, RegistroActivity.class);
+            startActivity(intent);
         });
     }
 
@@ -61,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
 
         progressBar.setVisibility(View.VISIBLE);
         btnLogin.setEnabled(false);
+        btnLogin.setText("Iniciando sesión...");
 
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
         LoginRequest request = new LoginRequest(correo, password);
@@ -70,9 +73,13 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<ApiResponse<Usuario>> call, Response<ApiResponse<Usuario>> response) {
                 progressBar.setVisibility(View.GONE);
                 btnLogin.setEnabled(true);
+                btnLogin.setText("Iniciar Sesión");
 
                 if (response.isSuccessful() && response.body() != null && response.body().isSuccess()) {
                     Usuario usuario = response.body().getData();
+
+                    SessionManager sessionManager = new SessionManager(LoginActivity.this);
+                    sessionManager.guardarUsuario(usuario);
 
                     Toast.makeText(
                             LoginActivity.this,
@@ -80,12 +87,9 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT
                     ).show();
 
-                    Intent intent = new Intent(
-                            LoginActivity.this,
-                            HomeActivity.class);
-
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-
                     finish();
 
                 } else {
@@ -99,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<ApiResponse<Usuario>> call, Throwable t) {
                 progressBar.setVisibility(View.GONE);
                 btnLogin.setEnabled(true);
+                btnLogin.setText("Iniciar Sesión");
 
                 Toast.makeText(LoginActivity.this,
                         "Error de conexión: " + t.getMessage(),

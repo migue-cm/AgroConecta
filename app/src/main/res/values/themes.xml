@@ -8,7 +8,9 @@
 
         <item name="colorSecondary">@color/accent_green</item>
 
-        <item name="android:statusBarColor">@color/primary_green</item>
+        <item name="android:statusBarColor">#FFFFFF</item>
+
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.AgroConecta" parent="Base.Theme.AgroConecta" />

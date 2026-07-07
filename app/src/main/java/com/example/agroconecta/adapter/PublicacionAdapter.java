@@ -1,6 +1,7 @@
 package com.example.agroconecta.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.agroconecta.R;
+import com.example.agroconecta.activities.DetalleActivity;
 import com.example.agroconecta.model.Publicacion;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
@@ -46,7 +48,8 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
         holder.txtProducto.setText(p.getProducto());
 
         holder.txtCantidad.setText(
-                p.getCantidadDisponible() + " " + p.getUnidadMedida());
+                formatearCantidad(p.getCantidadDisponible(), p.getUnidadMedida())
+                        + " " + p.getUnidadMedida());
 
         holder.txtUbicacion.setText(
                 p.getDepartamento());
@@ -63,10 +66,20 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
                         "/" +
                         p.getUnidadMedida());
 
+        holder.txtDescripcionCorta.setText(p.getDescripcion());
+        holder.txtInicialesAgricultor.setText(obtenerIniciales(p.getAgricultor()));
+
         Glide.with(context)
                 .load("http://172.16.10.31:31255/uploads/" + p.getRutaImagen())
                 .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_background)
                 .into(holder.imgProducto);
+
+        holder.btnComprar.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DetalleActivity.class);
+            intent.putExtra("publicacion", p);
+            context.startActivity(intent);
+        });
 
     }
 
@@ -82,7 +95,9 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
         TextView txtProducto,
                 txtCantidad,
                 txtUbicacion,
-                txtAgricultor;
+                txtAgricultor,
+                txtDescripcionCorta,
+                txtInicialesAgricultor;
 
         Chip chipCategoria,
                 chipPrecio;
@@ -103,12 +118,44 @@ public class PublicacionAdapter extends RecyclerView.Adapter<PublicacionAdapter.
 
             txtAgricultor = itemView.findViewById(R.id.txtAgricultor);
 
+            txtDescripcionCorta = itemView.findViewById(R.id.txtDescripcionCorta);
+
+            txtInicialesAgricultor = itemView.findViewById(R.id.txtInicialesAgricultor);
+
             chipCategoria = itemView.findViewById(R.id.chipCategoria);
 
             chipPrecio = itemView.findViewById(R.id.chipPrecio);
 
             btnComprar = itemView.findViewById(R.id.btnComprar);
 
+        }
+    }
+
+    private String obtenerIniciales(String nombre) {
+        if (nombre == null || nombre.trim().isEmpty()) return "AG";
+
+        String[] partes = nombre.trim().split(" ");
+
+        if (partes.length >= 2) {
+            return (partes[0].substring(0, 1) + partes[1].substring(0, 1)).toUpperCase();
+        }
+
+        return partes[0].substring(0, 1).toUpperCase();
+    }
+
+    private String formatearCantidad(String cantidad, String unidad) {
+        try {
+            double valor = Double.parseDouble(cantidad);
+
+            if (unidad.equalsIgnoreCase("saco") ||
+                    unidad.equalsIgnoreCase("caja")) {
+                return String.valueOf((int) valor);
+            }
+
+            return cantidad;
+
+        } catch (Exception e) {
+            return cantidad;
         }
     }
 }
